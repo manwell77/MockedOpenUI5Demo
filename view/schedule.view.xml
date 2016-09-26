@@ -1,0 +1,70 @@
+<mvc:View id="scheduleView"
+          controllerName="sap.ui.demo.controller.schedule" 
+		  xmlns="sap.m"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:core="sap.ui.core"
+		  displayBlock="true">
+		             
+     <Page id="schedulePage" title="{i18n>poScheduleTitle} {po>ProductName}" showNavButton="true" navButtonPress="onNavigationBack">
+         
+			<ObjectHeader id="poItem"
+					      responsive="true"
+					      fullScreenOptimized="false"
+					      binding="{po}"        	  
+						  title="{po>ProductName}"
+						  titleActive="true"
+						  titlePress="showImage"
+						  number="{parts:[{path:'po>Value'},{path:'po>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}"
+						  numberUnit="{po>CurrencyName}"
+						  icon="{po>ImageURL}"
+						  iconActive="true"
+						  iconPress="showImage"
+						  intro="{po>CategoryName}"
+						  showMarkers="false"
+						  markFlagged="false"
+						  markFavorite="false"
+						  numberState="None"
+						  backgroundDesign="Translucent">
+					<attributes>
+					    <ObjectAttribute title="{i18n>poProductCode}" text="{po>Product}"/>
+					    <ObjectAttribute title="{i18n>poCategory}" text="{po>Category}"/>
+					    <ObjectAttribute title="{i18n>poPrice}" text="{parts:[{path:'po>Price'},{path:'po>Currency'},{path:'po>CurrencyName'},{path:'po>PriceUnit'},{path:'po>UnitName'}],formatter: '.formatter.priceToString'}"/>
+					    <ObjectAttribute title="{i18n>poNetValue}" text="{parts:[{path:'po>NetValue'},{path:'po>Currency'}],formatter: '.formatter.valueToString'} {po>CurrencyName}"/>
+					    <ObjectAttribute title="{i18n>poTaxValue}" text="{parts:[{path:'po>TaxValue'},{path:'po>Currency'}],formatter: '.formatter.valueToString'} {po>CurrencyName}"/>					    					   					    		    
+					</attributes>		
+					<headerContainer>													
+	    					    					    		    
+					</headerContainer>
+				</ObjectHeader>	     
+				
+				<List id="poScheduleList" 
+				      class="sapUiResponsiveMargin" 
+				      width="auto" 
+				      items="{po>poItemScheduleSet}" 
+				      headerText="Schedules"
+					  growing="true"
+					  growingThreshold="10"
+					   growingScrollToLoad="true"
+					  busyIndicatorDelay="100"									      
+				      enableBusyIndicator="true">
+					<items>
+						<ObjectListItem title="{po>To}" 
+						                intro="{path: 'po>Date',formatter: '.formatter.dateTime'}"	
+						                type="Active"											                
+						                icon="sap-icon://map-2"
+						                number="{parts: [{path:'po>Quantity'}],type: 'sap.ui.model.type.Float',formatOptions: {maxFractionDigits: 2,showMeasure: false}}"
+							            numberUnit="{po>UnitName}"
+							            press="onPoItemSchedulePressed">					                
+							<attributes>
+								<ObjectAttribute text="{i18n>SchedStreet}: {po>HouseNo} {po>Street}" />
+								<ObjectAttribute text="{i18n>SchedCity}:{po>Zip} {po>City}" />
+								<ObjectAttribute text="{i18n>SchedRegion}:{po>RegionName}" />
+								<ObjectAttribute text="{i18n>SchedCountry}:{po>CountryName}" />
+							</attributes>
+						</ObjectListItem>
+					</items>
+				</List>				
+			
+     </Page>          
+     		  
+</mvc:View>

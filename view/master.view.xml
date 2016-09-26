@@ -1,0 +1,47 @@
+<mvc:View id="masterView"
+		  controllerName="sap.ui.demo.controller.master"
+		  xmlns="sap.m"
+		  xmlns:mvc="sap.ui.core.mvc">
+    <Page id="master" initialMaster="master" title="{i18n>poListTitle}">  	 
+   		<subHeader id="masterSubHeader">
+			<Bar id="searchBar">
+				<contentMiddle>
+					<SearchField id="searchField" search="onSearch" width="100%" showRefreshButton="{= ${device>/support/touch} ? false : true }" />
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+        <content>   
+		   <List id="masterList"
+			     class="sapUiResponsiveMargin"
+			     width="auto"
+			     items="{path:'po>/poSet',sorter: {path: 'StatusName', descending: false, group: true}}"
+				 growing="true"
+				 growingThreshold="10"
+				 growingScrollToLoad="true"
+				 busyIndicatorDelay="100"	     
+			     enableBusyIndicator="true"> 		      				     
+		      <items>
+		         <ObjectListItem title="{po>Number}" 
+		                         type="Navigation" 		                         
+		                         number="{parts: [{path:'po>Value'},{path:'po>Currency'}],type: 'sap.ui.model.type.Currency',formatOptions: {showMeasure: false}}"
+		                         numberUnit="{po>CurrencyName}"		                         
+		                         press="onPoPressed">
+					<firstStatus>
+						<ObjectStatus text="{po>StatusName}" state="{path: 'po>Status',formatter: '.formatter.statusColor'}" />
+					</firstStatus>		                         
+       				<attributes>
+						<ObjectAttribute text="{po>VendorName}" />											
+					</attributes>		                         
+		         </ObjectListItem>
+		      </items>
+		   </List>        
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button	icon="sap-icon://filter" press="StatusFilter" />
+				</contentRight>
+			</Bar>
+		</footer>					
+	</Page>	   
+</mvc:View>					

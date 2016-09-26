@@ -1,0 +1,13 @@
+<mvc:View id="scheduleView"
+          controllerName="sap.ui.demo.controller.schedulemap" 
+		  xmlns="sap.m"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:core="sap.ui.core"
+		  xmlns:html="http://www.w3.org/1999/xhtml"
+		  displayBlock="true">
+		             
+     <Page id="scheduleMapPage" title="{po>To}" showNavButton="true" navButtonPress="onNavigationBack" contentOnlyBusy="true">        
+		<core:HTML content="{parts: ['po>HouseNo','po>Street','po>Zip','po>City','po>RegionName','po>CountryName'],formatter: '.formatter.formatMapUrl'}"/>				
+     </Page>          
+     		  
+</mvc:View>									

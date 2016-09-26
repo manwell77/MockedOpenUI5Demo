@@ -1,0 +1,16 @@
+<mvc:View 
+    controllerName="sap.ui.demo.controller.app"
+  	xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true">
+   	<App class="appStyle" id="app">
+   	    <SplitContainer id="splitApp">
+   	    	<masterPages>    	        
+				<mvc:XMLView viewName="sap.ui.demo.view.master"/>
+			</masterPages>
+			<detailPages>
+			    <mvc:XMLView viewName="sap.ui.demo.view.detail"/>
+			</detailPages>
+		</SplitContainer>
+	</App>	
+</mvc:View>
