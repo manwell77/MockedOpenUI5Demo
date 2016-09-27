@@ -17,7 +17,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			onPoPressed: function (oEvent) {
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("detail", { poid: oEvent.getSource().getBindingContext("po").getObject().ID } );
-			}	
+			},
+			
+			onHomePressed: function(oEvent) {
+				
+				// get parameters
+				var sURL= $(location).attr("href");
+				
+				// SAP Host
+				var sNEW = sURL.replace("zdemo","zdemopad");
+				
+				// No SAP Host
+				if (sNEW===sURL) { sNEW = sURL.replace("DemoOpenUI5","DemoPadOpenUI5"); }
+				
+				// redirect
+				sap.m.URLHelper.redirect(sNEW);						
+			}
 		});
    
 });
