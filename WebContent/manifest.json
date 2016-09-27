@@ -1,0 +1,41 @@
+{
+  "_version": "1.1.0",
+  "sap.app": {
+	"_version": "1.1.0",
+	"id": "sap.ui.demo",
+	"type": "application",
+	"i18n": "i18n/i18n.properties",
+	"title": "{{appTitle}}",
+	"description": "{{appDescription}}",
+	"applicationVersion": { "version": "1.0.0" },
+	"dataSources": { "poRemote": { "uri": "https://services.odata.org/po.svc/", "type": "OData", "settings": { "odataVersion": "2.0" } } }
+  },
+  "sap.ui": {
+	"_version": "1.1.0",
+	"technology": "UI5",
+	"deviceTypes": { "desktop": true, "tablet": true, "phone": true },
+	"supportedThemes": ["sap_bluecrystal"]
+  },
+  "sap.ui5": {
+	"_version": "1.1.0",
+	"rootView": "sap.ui.demo.view.app",
+	"dependencies": { "minUI5Version": "1.30", "libs": { "sap.m": {} } },
+    "models": {
+	    "i18n": { "type": "sap.ui.model.resource.ResourceModel", "settings": { "bundleName": "sap.ui.demo.i18n.i18n" } },	    
+		"po": { "dataSource": "poRemote" }
+    },    
+    "routing": { "config": { "routerClass": "sap.m.routing.Router", "viewType": "XML", "viewPath": "sap.ui.demo.view", "transition": "slide", "greedy": "false" },
+                 "routes": [ { "pattern": "", "name": "app", "target": ["schedule","detail","master"], "targetControl": "splitApp" },
+                             { "pattern": "/poSet({poid})", "name": "detail", "target": ["master","detail"], "targetControl": "splitApp" },
+                             { "pattern": "/poSetPDF({poid},{pdfid})", "name": "detailpdf", "target": ["master","detailpdf"], "targetControl": "splitApp" },
+                             { "pattern": "/poItemSet({poitemid})", "name": "schedule", "target": ["master","schedule"], "targetControl": "splitApp" },
+                             { "pattern": "/poItemScheduleSet({poitemscheduleid})", "name": "schedulemap", "target": ["master","schedulemap"], "targetControl": "splitApp" }],
+                 "targets": { "master": { "viewName": "master", "viewLevel": 1, "controlId": "splitApp", "controlAggregation" : "masterPages" },
+                	          "detail": { "viewName": "detail", "viewLevel": 2, "controlId": "splitApp", "controlAggregation" : "detailPages" },
+                	          "schedule": { "viewName": "schedule", "viewLevel": 3, "controlId": "splitApp", "controlAggregation" : "detailPages" },
+                	          "detailpdf": { "viewName": "detailpdf", "viewLevel": 3, "controlId": "splitApp", "controlAggregation" : "detailPages", "transition": "flip" },
+                	          "schedulemap": { "viewName": "schedulemap", "viewLevel": 4, "controlId": "splitApp", "controlAggregation" : "detailPages", "transition": "flip" }}
+               },	        
+	"resources": { "css": [ { "uri": "css/style.css" } ] }	
+  }
+}

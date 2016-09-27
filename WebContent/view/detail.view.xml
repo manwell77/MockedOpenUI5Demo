@@ -1,0 +1,80 @@
+<mvc:View id="detailView"
+          controllerName="sap.ui.demo.controller.detail" 
+		  xmlns="sap.m"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:core="sap.ui.core"
+		  displayBlock="true">
+	<Page id="detailPage" title="{i18n>poDetailTitle} {po>Number}" showNavButton="{= ${device>/system/desktop} ? false : true }" navButtonPress="onNavigationBack">	      
+		<content>		    		    		    
+			<ObjectHeader id="poHeader"
+					      responsive="true"
+					      fullScreenOptimized="false"
+					      binding="{po}"        	  
+						  title="{i18n>poNumber} {po>Number}"
+						  number="{parts:[{path:'po>Value'},{path:'po>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}"
+						  numberUnit="{po>CurrencyName}"
+						  icon="sap-icon://my-sales-order"
+						  intro="{i18n>poVendor}: {po>VendorName}"
+						  showMarkers="false"
+						  markFlagged="false"
+						  markFavorite="false"
+						  numberState="None"
+						  backgroundDesign="Translucent">
+					<statuses>
+						<ObjectStatus title="{i18n>poStatus}" text="{po>StatusName}" state="{path: 'po>Status',formatter: '.formatter.statusColor'}"/>
+					</statuses>
+					<attributes>
+					    <ObjectAttribute title="{i18n>poUnit}" text="{po>UnitName}"/>	    
+					</attributes>		
+					<headerContainer>													
+						<IconTabBar	id="poDetailTab"
+									selectedKey="poItemTab"
+									upperCase="false"
+									class="sapUiResponsiveContentPadding">
+							<items>
+								<IconTabFilter
+								    key="poHeaderTab"
+								    text="Header"
+									icon="sap-icon://sales-order">	
+									<core:Fragment fragmentName="sap.ui.demo.view.poheader" type="XML"/>	
+							    </IconTabFilter>		    
+								<IconTabFilter	key="poItemTab"		
+												text="Items"			    
+												icon="sap-icon://sales-order-item"
+												count="{po>ItemNo}">						
+										<List id="poItemList" 
+										      class="sapUiResponsiveMargin" 
+										      width="auto" items="{po>poItemSet}" 
+											  growing="true"
+											  growingThreshold="10"
+				 						      growingScrollToLoad="true"
+											  busyIndicatorDelay="100"												  								      
+										      enableBusyIndicator="true">
+											<items>
+												<ObjectListItem title="{po>ProductName}" 												                
+												                icon="{po>ImageURL}"
+												                type="Active"
+												                number="{parts: [{path:'po>Value'},{path:'po>Currency'}],type: 'sap.ui.model.type.Currency',formatOptions: {showMeasure: false}}"
+													            numberUnit="{po>CurrencyName}" 
+													            press="onPoItemPressed">
+													<attributes>
+														<ObjectAttribute id="poUnit" text="{po>Quantity} {po>UnitName}" />
+													</attributes>
+												</ObjectListItem>
+											</items>
+										</List>																									
+								</IconTabFilter>
+							</items>
+						</IconTabBar>		    					    					    		    
+					</headerContainer>
+				</ObjectHeader>		    
+		</content>
+		<footer>		    
+			<Bar visible="{= ${po>SignedID}==='' ? true : false }">
+				<contentMiddle>
+					<Button text="{i18n>signPo} {po>Number}" icon="sap-icon://signature" press="onSign"/>
+				</contentMiddle>
+			</Bar>		    
+		</footer>		
+	</Page>
+</mvc:View>					

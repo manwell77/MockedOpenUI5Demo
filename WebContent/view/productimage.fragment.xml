@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	                     xmlns:core="sap.ui.core">
+	<ResponsivePopover class="sapUiPopupWithPadding" 
+	                   placement="Bottom" 
+	                   showArrow="true" 
+	                   modal="true" 
+	                   bounce="true">
+          	                   
+		<customHeader>
+		    <Bar>
+		        <contentMiddle>
+		            <Text text="{po>ProductName}"/>
+		        </contentMiddle>
+		        <contentRight>
+					<Button icon="sap-icon://decline" press="closeImage" visible="{= ${device>/system/phone} ? false : true }"/>
+				</contentRight>
+			</Bar>
+		</customHeader>		
+	    <content>
+			<Image id="ProductImage" src="{po>ImageURL}" width="18em"/>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:sap="http://www.sap.com/Protocols/SAPData" Namespace="po">
+            <EntityType Name="po">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Nullable="false" Type="Edm.Int16"/>
+                <Property MaxLength="10" Name="Number" Nullable="false" Type="Edm.String"/>
+                <Property MaxLength="4" Name="Requester" Nullable="false" Type="Edm.String"/>
+                <Property Name="RequesterName" Type="Edm.String"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="UnitName" Type="Edm.String"/>
+                <Property MaxLength="10" Name="Vendor" Nullable="false" Type="Edm.String"/>
+                <Property Name="VendorName" Type="Edm.String"/>
+                <Property Name="Date" Nullable="false" Type="Edm.DateTime"/>
+                <Property Name="Value" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property MaxLength="3" Name="Currency" Nullable="false" Type="Edm.String"/>
+                <Property Name="NetValue" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="TaxValue" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="CurrencyName" Type="Edm.String"/>
+                <Property MaxLength="10" Name="Releaser" Nullable="false" Type="Edm.String"/>
+                <Property Name="ReleaserName" Type="Edm.String"/>
+                <Property MaxLength="3" Name="Status" Nullable="false" Type="Edm.String"/>
+                <Property Name="StatusName" Type="Edm.String"/>
+                <Property Name="ItemNo" Nullable="false" Type="Edm.Int16"/>
+                <Property Name="UnsignedID" Nullable="false" Type="Edm.String"/>
+                <Property Name="SignedID" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_po" Name="poItemSet" Relationship="po.popoItem" ToRole="To_poItem"/>                
+                <NavigationProperty FromRole="From_po" Name="poItemSet" Relationship="po.popoItem" ToRole="To_poItem"/>
+            </EntityType>
+            <EntityType Name="poItem">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Nullable="false" Type="Edm.Int16"/>
+                <Property Name="poID" Nullable="false" Type="Edm.Int16"/>
+                <Property MaxLength="18" Name="Product" Nullable="false" Type="Edm.String"/>
+                <Property Name="ProductName" Type="Edm.String"/>
+                <Property Name="Value" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property MaxLength="3" Name="Currency" Nullable="false" Type="Edm.String"/>
+                <Property Name="Price" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="PriceUnit" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="Quantity" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property MaxLength="3" Name="Unit" Nullable="false" Type="Edm.String"/>
+                <Property MaxLength="10" Name="Category" Nullable="false" Type="Edm.String"/>
+                <Property Name="CategoryName" Type="Edm.String"/>
+                <Property Name="NetValue" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="TaxValue" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property Name="UnitName" Type="Edm.String"/>
+                <Property Name="CurrencyName" Type="Edm.String"/>
+                <Property Name="ImageURL" Type="Edm.String"/>
+                <NavigationProperty FromRole="To_poItem" Name="po" Relationship="po.popoItem" ToRole="From_po"/>
+                <NavigationProperty FromRole="From_poItem" Name="poItemScheduleSet" Relationship="po.poItempoItemSchedule" ToRole="To_poItemSchedule"/>
+            </EntityType>
+            <EntityType Name="poItemSchedule">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Nullable="false" Type="Edm.Int16"/>
+                <Property Name="poItemID" Nullable="false" Type="Edm.Int16"/>
+                <Property Name="Date" Nullable="false" Type="Edm.DateTime"/>
+                <Property Name="Street" Nullable="false" Type="Edm.String"/>
+                <Property Name="HouseNo" Type="Edm.String"/>
+                <Property Name="Building" Type="Edm.String"/>
+                <Property Name="Level" Type="Edm.String"/>
+                <Property Name="Room" Type="Edm.String"/>
+                <Property Name="City" Type="Edm.String"/>
+                <Property Name="Region" Type="Edm.String"/>
+                <Property Name="RegionName" Type="Edm.String"/>
+                <Property MaxLength="3" Name="Country" Nullable="false" Type="Edm.String"/>
+                <Property Name="CountryName" Type="Edm.String"/>
+                <Property Name="Zip" Type="Edm.String"/>
+                <Property Name="Quantity" Nullable="false" Precision="19" Scale="2" Type="Edm.Decimal"/>
+                <Property MaxLength="3" Name="Unit" Nullable="false" Type="Edm.String"/>
+                <Property Name="UnitName" Type="Edm.String"/>
+                <Property Name="To" Nullable="false" Type="Edm.String"/>
+                <NavigationProperty FromRole="To_poItemSchedule" Name="poItem" Relationship="po.poItempoItemSchedule" ToRole="From_poItem"/>
+            </EntityType>
+            <Association Name="popoItem">
+                <End Multiplicity="1" Role="From_po" Type="po.po"/>
+                <End Multiplicity="*" Role="To_poItem" Type="po.poItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="From_po">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="To_poItem">
+                        <PropertyRef Name="poID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="poItempoItemSchedule">
+                <End Multiplicity="1" Role="From_poItem" Type="po.poItem"/>
+                <End Multiplicity="*" Role="To_poItemSchedule" Type="po.poItemSchedule"/>
+                <ReferentialConstraint>
+                    <Principal Role="From_poItem">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="To_poItemSchedule">
+                        <PropertyRef Name="poItemID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="po.po" Name="poSet"/>
+                <EntitySet EntityType="po.poItem" Name="poItemSet"/>
+                <EntitySet EntityType="po.poItemSchedule" Name="poItemScheduleSet"/>
+                <AssociationSet Association="po.popoItem" Name="popoItemSet">
+                    <End EntitySet="poSet" Role="From_po"/>
+                    <End EntitySet="poItemSet" Role="To_poItem"/>
+                </AssociationSet>
+                <AssociationSet Association="po.poItempoItemSchedule" Name="poItempoItemScheduleSet">
+                    <End EntitySet="poItemSet" Role="From_poItem"/>
+                    <End EntitySet="poItemScheduleSet" Role="To_poItemSchedule"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
