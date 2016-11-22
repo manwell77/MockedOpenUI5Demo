@@ -28,7 +28,7 @@
                 <Property Name="SignedID" Type="Edm.String"/>
                 <NavigationProperty FromRole="From_po" Name="poItemSet" Relationship="po.popoItem" ToRole="To_poItem"/>                
                 <NavigationProperty FromRole="From_po" Name="poItemSet" Relationship="po.popoItem" ToRole="To_poItem"/>
-            </EntityType>
+            </EntityType> 
             <EntityType Name="poItem">
                 <Key>
                     <PropertyRef Name="ID"/>

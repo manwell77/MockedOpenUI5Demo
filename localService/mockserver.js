@@ -14,7 +14,7 @@ sap.ui.define(["sap/ui/core/util/MockServer"],
 			var sPath = jQuery.sap.getModulePath("sap.ui.demo.localService");
 			oMockServer.simulate(sPath + "/metadata.xml", sPath + "/mockdata");
 			// start
-			oMockServer.start();
+			oMockServer.start(); 
 		}
 	};
 });
