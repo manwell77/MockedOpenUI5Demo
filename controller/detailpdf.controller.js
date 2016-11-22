@@ -10,7 +10,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
    
 		return Controller.extend("sap.ui.demo.controller.detailpdf", {  											
 			
-			formatter: formatter,
+			formatter: formatter, 
 			
 			onInit: function () {		
                 /* get route */				

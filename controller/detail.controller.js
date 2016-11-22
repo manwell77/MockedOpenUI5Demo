@@ -2,9 +2,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
                "sap/ui/core/routing/History",
                "sap/ui/demo/model/formatter",
                "sap/ui/model/resource/ResourceModel",
-               "sap/m/MessageToast"], 
+               "sap/m/MessageToast",
+               "sap/m/Dialog",
+               "sap/m/Button"], 
 		
-	function (Controller,History,formatter,ResourceModel,MessageToast) {
+	function (Controller,History,formatter,ResourceModel,MessageToast, Dialog, Button) {
 	
 		"use strict";
    
@@ -41,6 +43,48 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				MessageToast.show(oBundle.getText("signedPo") + " " + oEvent.getSource().getBindingContext("po").getProperty("Number") + " " + oBundle.getText("signedPoSigned") + " " + sID,
 						          { width: "25em" });
 			},	
+			
+			onSignPad: function (oEvent) {
+				
+				var oBundle = this.getView().getModel("i18n").getResourceBundle();
+				
+				var oDialog = new Dialog("signature",{
+					
+					title: 'Sign',
+					horizontalScrolling: false,
+					verticalScrolling: false,
+					resizable: false,
+					draggable: false,
+					stretch: "{= ${device>/system/phone} ? true : false }" ,
+					content: new sap.ui.core.HTML({ preferDOM: true, 
+					                                content: "<div id='signature-pad' class='m-signature-pad'>" +
+														         "<canvas></canvas>" +
+														     "</div>" +
+														     "<script src='../signature/signature.js'></script>" +
+														     "<script src='../signature/app.js'></script>" }),
+					
+					endButton: new Button({ text: oBundle.getText("poCancelSign"), press: function () { oDialog.close(); }	}),
+					beginButton: new Button({ text: oBundle.getText("poSign"), press: function () 
+						{   
+						  oDialog.close();
+						  var sRand = Math.floor(Math.random()*100000000000000).toString();
+					      var sID = sRand.substr(0,4) + "-" + sRand.substr(4,6) + "-" + sRand.substr(10,4);
+						  MessageToast.show(oBundle.getText("signedPo") + " " + oEvent.getSource().getBindingContext("po").getProperty("Number") + " " + oBundle.getText("signedPoSigned") + " " + sID,{ width: "25em" }); 
+						}	
+					}),
+					
+					afterClose: function() { oDialog.destroy(); }
+				 
+				});
+	 
+				//to get access to the global model
+				this.getView().addDependent(oDialog);
+				oDialog.open();
+				if (!this.getView().getModel("device").getData().system.phone) {
+					oDialog.setContentWidth($("#signature-pad").outerWidth(false) + "px");
+					oDialog.setContentHeight($("#signature-pad").outerHeight(false) + "px"); 
+				}
+			},
 			
 			PressPDF: function (oEvent) {
 				// getconfig  model and set id

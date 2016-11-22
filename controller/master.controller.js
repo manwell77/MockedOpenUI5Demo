@@ -10,7 +10,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			
 			formatter: formatter,			
 		
-			onInit: function () {	
+			onInit: function () {	 
 
 			},
 			
