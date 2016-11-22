@@ -27,7 +27,7 @@ sap.ui.define(["sap/ui/core/UIComponent",
 				var oCFGModel = new JSONModel();
 				oCFGModel.setData({ idPDFShow: "" });
 				oCFGModel.setDefaultBindingMode("OneWay");
-				this.setModel(oCFGModel, "config");
+				this.setModel(oCFGModel, "config"); 
 				
 			}
    });

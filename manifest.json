@@ -22,7 +22,7 @@
 	"dependencies": { "minUI5Version": "1.30", "libs": { "sap.m": {} } },
     "models": {
 	    "i18n": { "type": "sap.ui.model.resource.ResourceModel", "settings": { "bundleName": "sap.ui.demo.i18n.i18n" } },	    
-		"po": { "dataSource": "poRemote" }
+		"po": { "dataSource": "poRemote" } 
     },    
     "routing": { "config": { "routerClass": "sap.m.routing.Router", "viewType": "XML", "viewPath": "sap.ui.demo.view", "transition": "slide", "greedy": "false" },
                  "routes": [ { "pattern": "", "name": "app", "target": ["schedule","detail","master"], "targetControl": "splitApp" },
@@ -36,6 +36,6 @@
                 	          "detailpdf": { "viewName": "detailpdf", "viewLevel": 3, "controlId": "splitApp", "controlAggregation" : "detailPages", "transition": "flip" },
                 	          "schedulemap": { "viewName": "schedulemap", "viewLevel": 4, "controlId": "splitApp", "controlAggregation" : "detailPages", "transition": "flip" }}
                },	        
-	"resources": { "css": [ { "uri": "css/style.css" } ] }	
+	"resources": { "css": [ { "uri": "css/style.css" }, { "uri": "css/signature.css" }  ] }	
   }
 }
