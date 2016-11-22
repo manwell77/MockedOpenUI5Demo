@@ -21,7 +21,7 @@ sap.ui.define([], function () {
 				switch (Date.getDay()) {
 				case 1: date = oBundle.getText("dayMonday"); break;
 				case 2: date = oBundle.getText("dayTuesday"); break;
-				case 3: date = oBundle.getText("dayWednesday"); break;
+				case 3: date = oBundle.getText("dayWednesday"); break; 
 				case 4: date = oBundle.getText("dayThursday"); break;
 				case 5: date = oBundle.getText("dayFriday"); break;
 				case 6: date = oBundle.getText("daySaturday"); break;
@@ -105,7 +105,7 @@ sap.ui.define([], function () {
 					
 				}
 				
-				var sFrame="<iframe src='http://mozilla.github.io/pdf.js/web/viewer.html?file=" + sPDF + "' width='100%' height='100%' />";
+				var sFrame="<iframe src='https://mozilla.github.io/pdf.js/web/viewer.html?file=" + sPDF + "' width='100%' height='100%' />";
 				
 				return sFrame;				
 				
