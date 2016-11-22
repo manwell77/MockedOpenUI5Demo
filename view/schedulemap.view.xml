@@ -8,6 +8,6 @@
 		             
      <Page id="scheduleMapPage" title="{po>To}" showNavButton="true" navButtonPress="onNavigationBack" contentOnlyBusy="true">        
 		<core:HTML content="{parts: ['po>HouseNo','po>Street','po>Zip','po>City','po>RegionName','po>CountryName'],formatter: '.formatter.formatMapUrl'}"/>				
-     </Page>          
+     </Page>           
      		  
 </mvc:View>									

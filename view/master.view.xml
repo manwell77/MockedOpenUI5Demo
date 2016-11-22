@@ -14,7 +14,7 @@
 			</Bar>
 		</subHeader>
         <content>   
-		   <List id="masterList"
+		   <List id="masterList" 
 			     class="sapUiResponsiveMargin"
 			     width="auto"
 			     items="{path:'po>/poSet',sorter: {path: 'StatusName', descending: false, group: true}}"

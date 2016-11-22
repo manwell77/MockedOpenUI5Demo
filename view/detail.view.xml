@@ -23,7 +23,7 @@
 					<statuses>
 						<ObjectStatus title="{i18n>poStatus}" text="{po>StatusName}" state="{path: 'po>Status',formatter: '.formatter.statusColor'}"/>
 					</statuses>
-					<attributes>
+					<attributes> 
 					    <ObjectAttribute title="{i18n>poUnit}" text="{po>UnitName}"/>	    
 					</attributes>		
 					<headerContainer>													
@@ -72,7 +72,8 @@
 		<footer>		    
 			<Bar visible="{= ${po>SignedID}==='' ? true : false }">
 				<contentMiddle>
-					<Button text="{i18n>signPo} {po>Number}" icon="sap-icon://signature" press="onSign"/>
+					<Button text="{= ${device>/system/phone} ? ${i18n>signHandPoShort} : ${i18n>signHandPo} }" tooltip="{= ${device>/system/phone} ? ${i18n>signHandPo} : '' }" icon="sap-icon://signature" press="onSignPad"/>
+					<Button text="{= ${device>/system/phone} ? ${i18n>signPoShort} : ${i18n>signPo} }" tooltip="{= ${device>/system/phone} ? ${i18n>signPo} : '' }" icon="sap-icon://attachment-photo" press="onSign"/>
 				</contentMiddle>
 			</Bar>		    
 		</footer>		

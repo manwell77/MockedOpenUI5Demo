@@ -23,7 +23,7 @@
 						  showMarkers="false"
 						  markFlagged="false"
 						  markFavorite="false"
-						  numberState="None"
+						  numberState="None" 
 						  backgroundDesign="Translucent">
 					<attributes>
 					    <ObjectAttribute title="{i18n>poProductCode}" text="{po>Product}"/>

@@ -11,7 +11,7 @@
 		        <contentMiddle>
 		            <Text text="{po>ProductName}"/>
 		        </contentMiddle>
-		        <contentRight>
+		        <contentRight> 
 					<Button icon="sap-icon://decline" press="closeImage" visible="{= ${device>/system/phone} ? false : true }"/>
 				</contentRight>
 			</Bar>

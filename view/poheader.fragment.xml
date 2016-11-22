@@ -13,7 +13,7 @@
 					  emptySpanL="0"
 					  emptySpanM="0"
 					  columnsXL="3"
-					  columnsL="2"
+					  columnsL="2" 
 					  columnsM="2"						
 					  editable="false"
 					  layout="ResponsiveGridLayout"

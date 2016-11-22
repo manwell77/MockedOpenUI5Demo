@@ -9,5 +9,5 @@
      <Page id="detailPDFPage" title="{config>/idPDFShow}" showNavButton="true" navButtonPress="onNavigationBack" contentOnlyBusy="true">        
 		<core:HTML content="{parts: ['config>/idPDFShow'],formatter: '.formatter.showPDF'}"/>				
      </Page>               
-     
+      
 </mvc:View>	
