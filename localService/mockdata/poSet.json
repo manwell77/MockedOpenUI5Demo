@@ -24,9 +24,9 @@
  {	 
 	"ID": 2,	
 	"Number": "10001156",	
-	"Requester": "CO16675",	
+	"Requester": "CO16675",	  
 	"RequesterName": "Tommaso Beati",	
-	"Vendor": "100035",	
+	"Vendor": "100035",	 
 	"VendorName": "Texas Instruments",	
 	"Unit": "CEN",
 	"UnitName": "Centrali",	
