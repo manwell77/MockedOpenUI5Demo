@@ -98,8 +98,8 @@ sap.ui.define([], function () {
 				
 				switch (sID) {
 				
-					case '1254-586925-2475': var sPDF = "http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"; break;
-					case '4567-567952-8557': var sPDF = "http://advancedlinuxprogramming.com/alp-folder/alp-apF-gnu-public-license.pdf"; break;
+					case '1254-586925-2475': var sPDF = "https://opentechstrategies.com/files/pub/oss-licensing-issues.pdf"; break;
+					case '4567-567952-8557': var sPDF = "https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/directaccesstesting.pdf"; break;
 					case '6845-815465-7836': var sPDF = "https://arxiv.org/ftp/arxiv/papers/1302/1302.6159.pdf"; break;
 					case '8567-347632-8375': var sPDF = "https://www.tutorialspoint.com/sap_fiori/sap_fiori_tutorial.pdf"; break;
 					

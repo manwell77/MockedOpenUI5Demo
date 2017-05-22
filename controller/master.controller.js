@@ -28,7 +28,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var sNEW = sURL.replace("zmockopenui5","zmockopenui5pad");
 				
 				// No SAP Host
-				if (sNEW===sURL) { sNEW = sURL.replace("DemoOpenUI5","DemoPadOpenUI5"); }
+				if (sNEW===sURL) { sNEW = sURL.replace("OpenUI5Demo","OpenUI5DemoPad"); }
 				
 				// redirect
 				sap.m.URLHelper.redirect(sNEW);						
